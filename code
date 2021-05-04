@@ -37,6 +37,7 @@ def Appsetup():
 		print("You have Exited!")
         #exit()
 	print("*********"*4)
+#Demo Content to Test App
 def democontent():
 	system('cls')
 	print("Demo content loading")
@@ -50,6 +51,17 @@ def democontent():
 	time.sleep(3)
 	sys.stdout.write('\rContent pull Completed \\' + "\n")
 	print("Demo Option unavailable...check back soon...")
+	system('cls')
+	print("""
+	[1] - Food
+	[2] - Fashion
+	[3] - Entertainment
+	""")
+	demoInp = int(input("Select Budget: "))
+	if demoInp == 1:
+		demoOption()
+def demoOption():
+	print("working...")
 class Budget:
     category_list = [] 
     category_balance = {} 

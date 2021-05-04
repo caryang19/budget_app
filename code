@@ -1,6 +1,6 @@
 import time
+from os import system
 import sys
-
 
 def Appsetup():
 	#Default Setup
@@ -15,6 +15,7 @@ def Appsetup():
 	print("*********"*4)
 	
 	if resp.lower() == 'yes' or resp.lower() == 'y':
+        
 		print("Setup Process Initiated...".upper())
 		print("1. Default Installation\n2. Customize Installation")
 		print("*********"*4)
@@ -66,10 +67,11 @@ class Budget:
             supply_category = input(f"Supply Category Name {num}: ")
             self.category_list.append(supply_category)
             
-        #for category in self.category_list:
+        for category in self.category_list:
             self.category_balance[category] = 0
         print("Categories have been successfully created")
         print(f"List and Balance: {self.category_balance}\n")
+        system('cls')
         self.operation()
 
     

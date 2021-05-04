@@ -25,6 +25,7 @@ def Appsetup():
 		if resp1 == 1:
 			#use demo content
 			print("Demo contents synchronizing...")
+			democontent()
 		elif resp1 == 2:
 			print("Great! Start by creating your Budget Categories")
 			Budget().installApp_main()
@@ -36,6 +37,18 @@ def Appsetup():
 		print("You have Exited!")
         #exit()
 	print("*********"*4)
+def democontent():
+	print("Demo content loading")
+	print("Looking for https://github.com/caryang19/budget_app/demo/content/app1")
+	time.sleep(3)
+	sys.stdout.write('\rConnecting to Database |')
+	time.sleep(3)
+	sys.stdout.write('\rConnected to Database.  /')
+	time.sleep(2)
+	sys.stdout.write('\rImporting Contents....  __')
+	time.sleep(3)
+	sys.stdout.write('\rContent pull Completed \\' + "\n")
+	print("Demo Option unavailable...check back soon...")
 class Budget:
     category_list = [] 
     category_balance = {} 
@@ -64,30 +77,37 @@ class Budget:
         print("*********"*4)
         number_of_categories = int(input("How many categories do you want to create?: "))
         for num in range(1, number_of_categories+1):
-            supply_category = input(f"Supply Category Name {num}: ")
+            supply_category = input(f"Budget Category Name {num}: ")
             self.category_list.append(supply_category)
             
         for category in self.category_list:
             self.category_balance[category] = 0
-        print("Categories have been successfully created")
-        print(f"List and Balance: {self.category_balance}\n")
+            print("Please Wait...")
+            time.sleep(3)
+        sys.stdout.write('\rAdding to Database |')
+        time.sleep(3)
+        sys.stdout.write('\rSaving Changes wait /')
+        time.sleep(2)
+        sys.stdout.write('\rDatabase Updated..  __')
+        time.sleep(3)
+        sys.stdout.write('\rBudget Categories Created Successfully \\' + "\n")
         system('cls')
         self.operation()
 
     
     # To perform basic operations
     def operation(self):
-        print("""These are the operations that can be performed\n
+        print("""Budget Options:\n
             [1] - DEPOSIT TO CATEGORY.
             [2] - WITHDRAWAL FROM CATEGORY.
             [3] - GET CATEGORY BALANCE.
             [4] - TRANSFER BETWEEN CATEGORIES.
             [5] - CREATE NEW CATEGORY.
             [6] - TOTAL BALANCE.
-            [0] - EXIT.
+            [0] - QUIT.
         """)
         try:
-            action = int(input("Which operation do you want to perform, type 1,2----6: "))
+            action = int(input("Select Option: "))
             if action == 1:
                 self.deposit_funds()
                 
@@ -110,7 +130,7 @@ class Budget:
                 self.exit_app()
                 
             else:
-                print("You have supplied an invalid input, please try again\n")
+                print("Wrong Input, please try again\n")
                 self.operation()   
         except ValueError:
             print("Digit is expected")
@@ -123,11 +143,11 @@ class Budget:
         for category in self.category_list:
             print(self.category_list.index(category)+1, category) # Returns index+1 of category and category name
         try:
-            select_category = int(input("Select a category to deposit funds to: "))
+            select_category = int(input("Select Category to Fund: "))
             selected_category = select_category - 1 # subtracts 1 from number supplied to match the real index of the select category in category list.
             category = self.category_list[selected_category] # Pass selected category into a variable
-            print(f"you have chosen to deposit funds to  {category}".capitalize())
-            deposit_amount = int(input(f"How much do you want to deposit to {category}: "))
+            print(f"you have selected to fund  {category}".capitalize())
+            deposit_amount = int(input("Enter Amount: "))
             self.category_balance[category] += deposit_amount
             print(f"You have deposited {deposit_amount} to {category}")
             print(f"Your New Balance:  {self.category_balance}")

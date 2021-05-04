@@ -1,174 +1,64 @@
-class Budget:
+#budget app
+import datetime
+category_list = [] 
+main_balance = {}
+category_balance = {}
+def Appsetup():
+	#Default Setup
+	print("Welcome to Setup ***********".upper())
+	print("App Name: \tBudget App Planner")
+	print("Release Date: \tApril 11, 2021")
+	print("Version: \t2.1v")
+	print("App Category: \tBusiness/Investment/IT")
+	print("Author: \tOlamilekan Olumide")
+	print("****"*4)
+	resp = input("Install Budget App Planner? Yes/No: ")
+	print("****"*4)
+	
+	if resp.lower() == 'yes' or resp.lower() == 'y':
+		print("Setup Process Initiated...".upper())
+		print("1. Default Installation\n2. Customize Installation")
+		print("****"*4)
+		print("Tip: Default Installation will synchronize demo \ncontents from our database\nCustomize Installation will allow you create \nyour own contents")
+		print("****"*4)
+		resp1 = int(input("Select Process: "))
+		if resp1 == 1:
+			#use demo content
+			print("Demo contents synchronizing...")
+		elif resp1 == 2:
+			print("Great! Start by creating your Budget Categories")
+			budAmt()
+			create_cat()
+		else:
+			print("Wrong Selection")
+	else:
+		print("invalid input")
+	print("****"*4)
+	#time.sleep(3)
 
-    def __init__(self, category, balance):
-        self.category = category
-        self.balance = balance
-
-    def deposit(self):
-        deposit_amount = float(input('Enter amount to deposit: \n'))
-        self.balance += deposit_amount
-        print(f'Your new balance is #{self.balance}')
-        return self.balance
-        exist()
-
-    def withdrawal(self):
-        withdraw_amount = float(input('How much do you want to withdraw? \n'))
-        if withdraw_amount > self.balance:
-            print('Insufficient Funds!!!!')
-            exist()
-        else:
-            self.balance -= withdraw_amount
-            print(f'Collect your cash, your new balance is #{self.balance}')
-            exist()
+def budAmt():
+	print("****"*4)
+	UserSal = float(input("How much is your salary/earning? "))
+	budamt = float(input("How much is your budget? "))
+	if UserSal > 0 and budamt >0:
+		UserSal = UserSal - budamt
+		print("You are left with %f to spend throughout\nthis month are you sure you want to continue? "%UserSal)
+		main_balance.update('balance')
+		budamt = main_balance.update('balance')
+		print(main_balance('balance'))
+	else:
+		print("Wrong values, try again")
+		exit()
+	
+def create_cat():
+        number_of_categories = int(input("How many categories do you want to create?: "))
+        for num in range(1, number_of_categories+1):
+            supply_category = input(f"Supply Category Name {num}: ")
+            category_list.append(supply_category)
             
-
-    def transfer(self, transfer_money):
-        print(f'Transfer from {self.category} budget')
-        transfer_amount = int(input('Enter amount to transfer: \n'))
-        if transfer_amount >= self.balance:
-            print('Insufficient funds!!!')
-            exist()
-        else:
-            self.balance -= transfer_amount
-            self.balance = get_balance
-            print(f'Transfer Successful: Your new {self.category} balance is #{self.balance}')
-            exist()
-
-    def get_balance(self):
-        self.balance
-        print(f"{self.category} balance: #{self.balance}")
-
-
-
-def food():
-    print('FOOD-BUDGET')
-    food1 = Budget('food', 1000)
-    food_Option = input('''You've the following options
-        1. Deposit
-        2. Withdraw
-        3. Transfer
-        4. Check balance \n ''')
-    if food_Option == '1':
-
-        food1.deposit()
-    elif food_Option == '2':
-        food1.withdrawal()
-    elif food_Option == '3':
-        transfer = input('''which category would you like to transfer to?
-            1.clothing
-            2.Entertainment \n''')
-        if transfer == '1':
-            food1.transfer('clothing')
-        elif transfer == '2':
-            food1.transfer('Entertainment')
-        else:
-            print('invalid option')
-    elif food_Option == '4':
-        food1.get_balance()
-    else:
-        print('invalid option selected')
-        exist()
-
-
-def clothing():
-    print('CLOTHING-BUDGET')
-    clothing1 = Budget('clothing', 2000)
-    clothing_Option = input('''You've the following options
-        1. deposit
-        2. withdraw
-        3. transfer
-        4. check balance \n ''')
-    if clothing_Option == '1':
-        clothing1.deposit()
-    elif clothing_Option == '2':
-        clothing1.withdrawal()
-    elif clothing_Option == '3':
-        category_TO_transfer = input('''which category would you like to transfer to?
-            1.food
-            2.Entertainment \n''')
-        if category_TO_transfer == '1':
-            clothing1.transfer('food')
-        elif category_TO_transfer == '2':
-            clothing1.transfer('Entertainment')
-        else:
-            print('invalid option')
-    elif clothing_Option == '4':
-        clothing1.get_balance()
-    else:
-        print('invalid option selected')
-        exist()
-
-
-def entertainment():
-    print('ENTERTAINMENT-BUDGET')
-    Entertainment = Budget('Entertainment', 5000)
-    Entertainment_Option = input('''You've the following options
-        1. deposit
-        2. withdraw
-        3. transfer
-        4. check balance \n ''')
-    if Entertainment_Option == '1':
-        Entertainment.deposit()
-    elif Entertainment_Option == '2':
-        Entertainment.withdrawal()
-    elif Entertainment_Option == '3':
-        transfer_to = input('''which category would you like to transfer to?
-            1.food
-            2.clothing \n''')
-        if transfer_to == '1':
-            Entertainment.transfer('food')
-        elif transfer_to == '2':
-            Entertainment.transfer('clothing')
-        else:
-            print('invalid option')
-    elif Entertainment_Option == '4':
-        Entertainment.get_balance()
-    else:
-        print('invalid option selected')
-        welcome()
-
-
-def welcome():
-    try:
-        print('>' * 3, "💵 WELCOME TO DEBBY'S BUDGET ☺️", '<' * 3)
-        select_option = int(input('''What would you like to budget for?
-    1. Food 🍲
-    2. Clothing 👙
-    3. Entertainment 🎧
-    4. Exit ❌
-    '''))
-        if select_option == 1:
-            food()
-        elif select_option == 2:
-            clothing()
-        elif select_option == 3:
-            entertainment()
-        elif select_option == 4:
-            print("Thank you for contacting Debby's budget💵,\n Please call again😊.")
-        else:
-            print('Invalid Option, Try again')
-            exist()
-    except ValueError:
-        print("<<<Enter Digits !!!>>>")
-        return welcome()
-
-
-def exist():
-    try:
-        exist_now = int(input("""Do you want to perform another transaction? \n
-    1. Yes
-    2. No \n
-    """))
-        if exist_now == 1:
-            welcome()
-        elif exist_now == 2:
-            print('Thank you for entering your budget!!! Till next time')
-        else:
-            print('Invalid Input, Please try again')
-            welcome()
-    except ValueError:
-        print('<<<Enter Number!!!>>>')
-        return exist()
-
-
-welcome()
+        for category in category_list:
+            category_balance[category] = 0
+        print("Categories have been successfully created")
+        print("Budget Balance is: %f" %main_balance('balance'))
+        print(f"List and Balance: {category_balance}\n")
+Appsetup()

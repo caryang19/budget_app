@@ -84,7 +84,10 @@ def demoOption():
 		print(balance)
 	elif option == 2:
 		amt = float(input("Enter Amount: "))
-		balance = balance - amt
+		if amt > balance:
+			print("Insufficient Balance")
+		else:
+			balance = balance - amt
 		print(balance)
 	elif option == 3:
 		print(balance)

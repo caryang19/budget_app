@@ -60,8 +60,41 @@ def democontent():
 	demoInp = int(input("Select Budget: "))
 	if demoInp == 1:
 		demoOption()
+	elif demoInp == 2:
+		demoOption()
+	elif demoInp == 3:
+		demoOption()
+	else:
+		print("wrong input")
+
+
 def demoOption():
-	print("working...")
+	balance = 1000.0
+	print("""
+	[1] - Deposit
+	[2] - Withdraw
+	[3] - Balance
+	[4] - Quit
+	
+	""")
+	option = int(input("Select Option: "))
+	if option == 1:
+		amt = float(input("Enter Amount: "))
+		balance = balance + amt
+		print(balance)
+	elif option == 2:
+		amt = float(input("Enter Amount: "))
+		balance = balance - amt
+		print(balance)
+	elif option == 3:
+		print(balance)
+	elif option == 4:
+		exit()
+	else:
+		print("Wrong input")
+
+
+
 class Budget:
     category_list = [] 
     category_balance = {} 

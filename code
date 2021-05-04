@@ -38,6 +38,7 @@ def Appsetup():
         #exit()
 	print("*********"*4)
 def democontent():
+	system('cls')
 	print("Demo content loading")
 	print("Looking for https://github.com/caryang19/budget_app/demo/content/app1")
 	time.sleep(3)
